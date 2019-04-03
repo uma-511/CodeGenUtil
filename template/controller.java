@@ -1,14 +1,12 @@
 package {{packageName}}.controller;
 
-import com.warrior.common.JSONMsg;
-import com.warrior.common.annotation.SysLog;
-import {{packageName}}.entity.{{entityName}};
+import com.deepbrief.JsonVO;
+import {{packageName}}.entity.{{entityName}}DO;
 import {{packageName}}.service.{{entityName}}Service;
-import com.warrior.common.web.WarriorBaseController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 {% if swagger %}
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,17 +18,25 @@ import springfox.documentation.annotations.ApiIgnore;
 import {{ imp }};
 {% endfor %}
 
+
+/**
+ * @author Rookie
+ * @ClassName: {{className}}
+ * @Description: {{remark}}
+ * @date {{date}}
+ * @Version 1.0
+ */
 {% if swagger %}
-@Api(value="{{className}}",tags = "{{remark}}",description = "{{remark}}")
+@Api(value="{{className}}",tags = "{{remark}}")
 {% else %}
 @ApiIgnore
 {% endif %}
 @RestController
 @RequestMapping("/{{name}}")
-public class {{className}} extends WarriorBaseController {
+public class {{className}} extends BaseController{
 
     @Autowired
-    private {{entityName}}Service ${name}Service;
+    private {{entityName}}Service {{name}}Service;
 
     /**
     * 根据id获取{{remark}}
@@ -41,14 +47,14 @@ public class {{className}} extends WarriorBaseController {
     @RequiresPermissions("admin:{{name}}:view")
     @RequestMapping(value = "{{"/{%s}"|format(primaryKey)}}", method = {RequestMethod.GET})
 {% if swagger %}
-    @ApiOperation(value = "获取{{remark}}",httpMethod = "GET",response = JSONMsg.class)
+    @ApiOperation(value = "获取{{remark}}",httpMethod = "GET",response = JsonVO.class)
 {% endif %}
-    public JSONMsg query{{entityName}}(
+    public JsonVO query{{entityName}}(
 {% if swagger %}
         @ApiParam(name="{{primaryKey}}",value = "{{primaryKey}}",required = true)
 {% endif %}
         @PathVariable(value = "{{primaryKey}}") {{primaryKeyType}} {{primaryKey}}) {
-        return buildMsg({{name}}Service.selectById({{primaryKey}}));
+        return buildMsg({{name}}Service.getById({{primaryKey}}));
     }
 
     /**
@@ -61,10 +67,10 @@ public class {{className}} extends WarriorBaseController {
     @RequiresPermissions("admin:{{name}}:add")
     @RequestMapping(value = {""}, method = {RequestMethod.POST})
 {% if swagger %}
-    @ApiOperation(value = "新增{{remark}}",httpMethod = "POST",response = JSONMsg.class)
+    @ApiOperation(value = "新增{{remark}}",httpMethod = "POST",response = JsonVO.class)
 {% endif %}
-    public JSONMsg add{{entityName}}({% if swagger %}@ModelAttribute{% endif %} {{entityName}} {{name}}) {
-        return buildMsg({{name}}Service.insert({{name}}));
+    public JsonVO add{{entityName}}({% if swagger %}@ModelAttribute{% endif %} {{entityName}}DO {{name}}) {
+        return buildMsg({{name}}Service.save({{name}}));
     }
 
     /**
@@ -77,14 +83,14 @@ public class {{className}} extends WarriorBaseController {
     @RequiresPermissions("admin:{{name}}:del")
     @RequestMapping(value = "{{"/{%s}"|format(primaryKey)}}", method = {RequestMethod.DELETE})
 {% if swagger %}
-    @ApiOperation(value = "删除{{name}}",httpMethod = "DELETE",response = JSONMsg.class)
+    @ApiOperation(value = "删除{{name}}",httpMethod = "DELETE",response = JsonVO.class)
 {% endif %}
-    public JSONMsg del{{entityName}}(
+    public JsonVO del{{entityName}}(
 {% if swagger %}
         @ApiParam(name="{{primaryKey}}",value = "{{primaryKey}}",required = true)
 {% endif %}
         @PathVariable(value = "{{primaryKey}}") {{primaryKeyType}} {{primaryKey}}) {
-        return buildMsg({{name}}Service.deleteById({{primaryKey}}));
+        return buildMsg({{name}}Service.removeById({{primaryKey}}));
     }
 
     /**
@@ -97,10 +103,10 @@ public class {{className}} extends WarriorBaseController {
     @RequiresPermissions("admin:{{name}}:update")
     @RequestMapping(value = "", method = {RequestMethod.PUT})
 {% if swagger %}
-    @ApiOperation(value = "修改{{remark}}",httpMethod = "PUT",response = JSONMsg.class)
+    @ApiOperation(value = "修改{{remark}}",httpMethod = "PUT",response = JsonVO.class)
 {% endif %}
-    public JSONMsg modified{{entityName}}({% if swagger %}@ModelAttribute {% endif %} {{entityName}} {{name}}) {
-        return buildMsg({{name}}Service.insertOrUpdate({{name}}));
+    public JsonVO modified{{entityName}}({% if swagger %}@ModelAttribute {% endif %} {{entityName}}DO {{name}}) {
+        return buildMsg({{name}}Service.saveOrUpdate({{name}}));
     }
 
     /**
@@ -110,9 +116,9 @@ public class {{className}} extends WarriorBaseController {
     @RequiresPermissions("admin:{{name}}:view")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
 {% if swagger %}
-    @ApiOperation(value = "获取{{remark}}列表",httpMethod = "GET",response = JSONMsg.class)
+    @ApiOperation(value = "获取{{remark}}列表",httpMethod = "GET",response = JsonVO.class)
 {% endif %}
-    public JSONMsg get{{entityName}}List(
+    public JsonVO get{{entityName}}List(
 {% for arg in args %}
 {% if arg.type == "Date" %}
 {% if swagger %}

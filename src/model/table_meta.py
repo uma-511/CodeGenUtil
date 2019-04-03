@@ -16,14 +16,14 @@ class TableMeta:
     __query = []
     # MySQL数据类型与JAVA数据类型对应表
     __field_types = {
-        'int': 'int',
-        'tinyint': 'int',
-        'smallint': 'int',
-        'mediumint': 'int',
-        'bigint': 'long',
-        'float': 'float',
-        'double': 'double',
-        'decimal': 'double',
+        'int': 'Integer',
+        'tinyint': 'Boolean',
+        'smallint': 'Integer',
+        'mediumint': 'Integer',
+        'bigint': 'Long',
+        'float': 'Float',
+        'double': 'Double',
+        'decimal': 'Double',
         'char': 'String',
         'varchar': 'String',
         'tinytext': 'String',
@@ -34,14 +34,19 @@ class TableMeta:
         'time': 'Date',
         'datetime': 'Date',
         'timestamp': 'Date',
-        'bit': 'boolean'
+        'bit': 'Boolean'
     }
 
     def __init__(self, table_name: str, prefix=None):
+        self.prefix = prefix
         if prefix is not None:
             table_name = table_name.replace(prefix, '')
             table_name = table_name[:1].upper() + table_name[1:]
         self.__table_name = table_name
+
+    @property
+    def get_prefix(self):
+        return self.prefix
 
     @property
     def get_table_name(self):
@@ -90,14 +95,14 @@ class TableMeta:
             is_edit = True
             if querys is not None and len(querys) > 0:
                 for query in querys:
-                    if query['name'] == field['column_name']:
+                    if query['name'] == field['COLUMN_NAME']:
                         temp_query = query
                         break
-            if noshow is not None and len(noshow) > 0 and field['column_name'] in noshow:
+            if noshow is not None and len(noshow) > 0 and field['COLUMN_NAME'] in noshow:
                 is_show = False
-            if noedit is not None and len(noedit) > 0 and field['column_name'] in noedit:
+            if noedit is not None and len(noedit) > 0 and field['COLUMN_NAME'] in noedit:
                 is_edit = False
-            self.__add_field(field['column_name'], field['data_type'], field['column_comment'], field['column_key'],
+            self.__add_field(field['COLUMN_NAME'], field['DATA_TYPE'], field['COLUMN_COMMENT'], field['COLUMN_KEY'],
                              temp_query, is_show, is_edit)
 
     def __add_field(self, column_name: str, data_type: str, column_comment: str, column_key: str, query: dict = None,

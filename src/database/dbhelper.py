@@ -3,10 +3,10 @@ import pymysql.cursors
 
 
 class DBHelper:
-    __ip = '10.211.55.5'
-    __userName = 'root'
-    __password = '123456'
-    __databaseName = 'lifepay'
+    __ip = '192.168.1.14'
+    __userName = 'dev'
+    __password = 'Deep@2019'
+    __databaseName = 'deepbrief'
     __connection = None
 
     def get_connection(self):
@@ -21,7 +21,8 @@ class DBHelper:
     def get_table_meta(self, table_name):
         with self.__connection.cursor() as cursor:
             cursor.execute(
-                "select column_name,data_type,column_key,column_comment from information_schema.columns where table_name = %s AND table_schema = %s",
+                "select column_name,data_type,column_key,column_comment from information_schema.columns "
+                "where table_name = %s AND table_schema = %s",
                 (table_name, self.__databaseName))
             result = cursor.fetchall()
         return result

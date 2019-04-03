@@ -1,18 +1,30 @@
 package {{packageName}}.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import lombok.Getter;
-import lombok.Setter;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import java.io.Serializable;
 {% for imp in imports %}
 import {{imp}};
 {% endfor %}
+{% if swagger %}
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+{% endif %}
 
+
+/**
+ * @author Rookie
+ * @ClassName: {{className}}
+ * @Description: {{remark}}
+ * @date {{date}}
+ * @Version 1.0
+ */
 {% if swagger %}
 @ApiModel(value = "{{className}}",description = "{{remark}}")
 {% endif %}
 @TableName(value = "{{tableName}}")
+@Data
 public class {{className}} implements Serializable{
 
 {% for attr in attrs %}
@@ -22,7 +34,6 @@ public class {{className}} implements Serializable{
 {% if attr.name == primaryKey %}
    @TableId
 {% endif %}
-   @Setter @Getter
    private {{attr.type}} {{attr.name}};
 
 {% endfor %}

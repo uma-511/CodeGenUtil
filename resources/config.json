@@ -1,28 +1,17 @@
 {
   "tables": [
     {
-      "tableName": "sys_setting",
-      "prefix": "sys_",
-      "codePath": "/Users/rookie/Desktop/com.warrior.base/src/main/java",
-      "viewPath": "/Users/rookie/Desktop/com.warrior.view/views/src/views",
-      "packageName": "com.warrior.base",
-      "remark": "系统设置",
+      "tableName": "seller_info",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "卖家基础信息",
       "query": [
-        {
-          "name": "sys_key",
-          "remark": "参数值",
-          "defaultVaule": ""
-        },
-        {
-          "name": "create_time",
-          "remark": "新增时间",
-          "defaultVaule": ""
-        }
       ],
-      "noShow": "id,update_time",
-      "noEdit": "id,update_time,create_time",
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
       "genCode": true,
-      "genView": true,
+      "genView": false,
       "swagger": true
     }
   ]
