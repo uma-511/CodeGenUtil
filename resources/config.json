@@ -13,6 +13,118 @@
       "genCode": true,
       "genView": false,
       "swagger": true
+    },
+    {
+      "tableName": "account_info",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "卖家账户信息",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "dictionary",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "系统字典信息",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "seller_account",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "卖家账户中间表",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "seller_menu",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "卖家菜单中间表",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "seller_role",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "卖家角色信息",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "system_setting",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "系统设置信息",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "third_account_info",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "第三方登录信息",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
+    },
+    {
+      "tableName": "verification_code",
+      "prefix": "",
+      "codePath": "/Users/imac/Workspace/DeepBrief/DeepBriefService/src/main/java",
+      "packageName": "com.deepbrief",
+      "remark": "验证码信息",
+      "query": [
+      ],
+      "noShow": "id,update_time,delete_time",
+      "noEdit": "id,update_time,create_time,delete_time",
+      "genCode": true,
+      "genView": false,
+      "swagger": true
     }
   ]
 }

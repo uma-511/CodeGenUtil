@@ -65,6 +65,7 @@ class CodeGen:
         class_name = CodeGen.get_class_name(table['tableName'], table['prefix'])
         data = {
             'packageName': table['packageName'],
+            'tableName': table['tableName'],
             'entityName': class_name,
             'className': class_name+'Dao',
             'hasQuery': (False, True)[len(table_meta.get_query) > 0],

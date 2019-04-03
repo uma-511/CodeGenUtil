@@ -3,15 +3,17 @@ import pymysql.cursors
 
 
 class DBHelper:
-    __ip = '192.168.1.14'
+    __ip = '39.108.99.240'
+    __port = 45036
     __userName = 'dev'
-    __password = 'Deep@2019'
+    __password = 'Dev@2019'
     __databaseName = 'deepbrief'
     __connection = None
 
     def get_connection(self):
         self.__connection = pymysql.connect(
             host=self.__ip,
+            port=self.__port,
             user=self.__userName,
             password=self.__password,
             db=self.__databaseName,

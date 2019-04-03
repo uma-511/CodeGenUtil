@@ -1,5 +1,6 @@
 package {{packageName}}.controller;
 
+import com.deepbrief.annotation.SysLog;
 import com.deepbrief.JsonVO;
 import {{packageName}}.entity.{{entityName}}DO;
 import {{packageName}}.service.{{entityName}}Service;

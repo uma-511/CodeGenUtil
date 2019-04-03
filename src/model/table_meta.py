@@ -89,20 +89,25 @@ class TableMeta:
         if fields is None or len(fields) == 0:
             log.logging.error('字段信息为空')
             raise Exception('字段信息为空！')
+        is_upper = True if len(fields) > 0 and 'COLUMN_NAME' in fields[0] else False
+        self.__fields.clear()
         for field in fields:
             temp_query = None
             is_show = True
             is_edit = True
             if querys is not None and len(querys) > 0:
                 for query in querys:
-                    if query['name'] == field['COLUMN_NAME']:
+                    if query['name'] == field['COLUMN_NAME' if is_upper else 'column_name']:
                         temp_query = query
                         break
-            if noshow is not None and len(noshow) > 0 and field['COLUMN_NAME'] in noshow:
+            if noshow is not None and len(noshow) > 0 and field['COLUMN_NAME' if is_upper else 'column_name'] in noshow:
                 is_show = False
-            if noedit is not None and len(noedit) > 0 and field['COLUMN_NAME'] in noedit:
+            if noedit is not None and len(noedit) > 0 and field['COLUMN_NAME' if is_upper else 'column_name'] in noedit:
                 is_edit = False
-            self.__add_field(field['COLUMN_NAME'], field['DATA_TYPE'], field['COLUMN_COMMENT'], field['COLUMN_KEY'],
+            self.__add_field(field['COLUMN_NAME' if is_upper else 'column_name'],
+                             field['DATA_TYPE' if is_upper else 'data_type'],
+                             field['COLUMN_COMMENT' if is_upper else 'column_comment'],
+                             field['COLUMN_KEY' if is_upper else 'column_key'],
                              temp_query, is_show, is_edit)
 
     def __add_field(self, column_name: str, data_type: str, column_comment: str, column_key: str, query: dict = None,
