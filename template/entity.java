@@ -37,4 +37,9 @@ public class {{className}} implements Serializable{
    private {{attr.type}} {{attr.name}};
 
 {% endfor %}
+
+   @Override
+   public String toString(){
+      return "{{className}}: "{%- for attr in attrs -%} + "{{attr.name}}=" + this.{{attr.name}}{%-if not loop.last-%}+","{%-endif-%}{%-endfor-%};
+   }
 }
