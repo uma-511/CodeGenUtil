@@ -16,6 +16,11 @@ import {{imp}};
  */
 public interface {{className}} extends IService<{{entityName}}DO>{
 
+    /**
+     * 分页查询
+     * @param page
+     * @return list
+     */
     Page<{{entityName}}DO> getPageList(Page<{{entityName}}DO> page{% for arg in args %}{% if arg.type == 'Date' %},{{arg.type}} {{arg.name}}_start,{{arg.type}} {{arg.name}}_end{% else %},{{arg.type}} {{arg.name}}{% endif %}{% endfor %});
 
 }

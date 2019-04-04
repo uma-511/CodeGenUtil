@@ -35,7 +35,7 @@ class CodeGen:
                 self.__gen__dao(table, table_meta)
                 self.__gen_service(table, table_meta)
                 self.__gen_entity(table, table_meta)
-                self.__gen_controller(table, table_meta)
+                # self.__gen_controller(table, table_meta)
             if ('genView' not in table.keys()) or table['genView']:
                 self.__gen_view(table, table_meta)
         self.__dbhelper.close_connection()
@@ -69,6 +69,7 @@ class CodeGen:
             'entityName': class_name,
             'className': class_name+'Dao',
             'hasQuery': (False, True)[len(table_meta.get_query) > 0],
+            'attrs': table_meta.get_fields,
             'date': CodeGen.get_date()
         }
         target = template.render(data)

@@ -112,6 +112,7 @@ class TableMeta:
 
     def __add_field(self, column_name: str, data_type: str, column_comment: str, column_key: str, query: dict = None,
                     is_show: bool = True, is_edit: bool = True):
+        org_column = column_name
         if '\n' in column_comment:
             column_comment = column_comment[:column_comment.find('\n')]
         temp = column_name.split('_')
@@ -119,7 +120,8 @@ class TableMeta:
             for i in range(1, len(temp), 1):
                 temp[i] = temp[i][:1].upper() + temp[i][1:]
             column_name = ''.join(temp)
-        temp_field = {'name': column_name, 'type': self.__get_type(data_type), 'comment': column_comment,
+        temp_field = {'org_column': org_column, 'name': column_name, 'type': self.__get_type(data_type),
+                      'comment': column_comment,
                       'show': is_show, 'edit': is_edit}
         self.__fields.append(temp_field)
         if query is not None:
