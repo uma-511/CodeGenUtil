@@ -115,6 +115,7 @@ class TableMeta:
         org_column = column_name
         if '\n' in column_comment:
             column_comment = column_comment[:column_comment.find('\n')]
+        column_name = column_name.replace("is_", "")
         temp = column_name.split('_')
         if len(temp) > 1:
             for i in range(1, len(temp), 1):

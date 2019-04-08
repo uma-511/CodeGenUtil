@@ -1,6 +1,7 @@
 package {{packageName}}.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import java.io.Serializable;
@@ -33,8 +34,12 @@ public class {{className}} implements Serializable{
 {% endif %}
 {% if attr.name == primaryKey %}
    @TableId
-{% endif %}
    private {{attr.type}} {{attr.name}};
+{% else %}
+   @TableField("{{attr.org_column}}")
+   private {{attr.type}} {{attr.name}};
+{% endif %}
+
 
 {% endfor %}
 
